@@ -15,7 +15,8 @@ public class Numbers {
         try {
             // 本地文件路径
             String filePath = "[本地文件路径]";
-            byte[] imgData = FileUtil.readFileByBytes(filePath);
+            //byte[] imgData = FileUtil.readFileByBytes(filePath);
+            byte[] imgData=new byte[]{};
             String imgStr = Base64Util.encode(imgData);
             String imgParam = URLEncoder.encode(imgStr, "UTF-8");
 

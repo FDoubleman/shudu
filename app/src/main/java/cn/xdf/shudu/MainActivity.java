@@ -4,13 +4,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.baidu.ocr.sdk.OCR;
+import com.baidu.ocr.sdk.OnResultListener;
+import com.baidu.ocr.sdk.exception.OCRError;
+import com.baidu.ocr.sdk.model.AccessToken;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.xdf.shudu.ocr.OCRDemoActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -20,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initOcr();
         setContentView(R.layout.activity_main);
         RecyclerView rlvRoot = findViewById(R.id.rlv_root);
         GridLayoutManager glm = new GridLayoutManager(this, 9);
@@ -28,8 +37,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         rlvRoot.setAdapter(mAdapter);
         mBtnDiscern = findViewById(R.id.btn_discern);
         mBtnSetData = findViewById(R.id.btn_set_data);
+        Button btn_demo = findViewById(R.id.btn_demo);
         mBtnDiscern.setOnClickListener(this);
         mBtnSetData.setOnClickListener(this);
+        btn_demo.setOnClickListener(this);
     }
 
     private char[][] chars = new char[][]{
@@ -62,8 +73,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             mAdapter.setData(newList);
         } else if (id == R.id.btn_set_data) {
             setData();
+        } else if (id == R.id.btn_demo) {
+            Intent intent = new Intent(this, OCRDemoActivity.class);
+            this.startActivity(intent);
         }
     }
 
+    private String mAK = "KGSObUfY8bn8fvntY1z8WYfv";
+    private String mSK = "9ihvvcAR8qtQP2b9iU0zffQhbWZN8WGV";
+
+    public void initOcr() {
+//        OCR.getInstance(this).initAccessTokenWithAkSk(new OnResultListener<AccessToken>() {
+//            @Override
+//            public void onResult(AccessToken accessToken) {
+//
+//            }
+//
+//            @Override
+//            public void onError(OCRError ocrError) {
+//
+//            }
+//        }, this.getApplicationContext(), mAK, mSK);
+//
+
+//        OCR.getInstance(this.getApplication()).initAccessToken(new OnResultListener<AccessToken>() {
+//            @Override
+//            public void onResult(AccessToken accessToken) {
+//
+//            }
+//
+//            @Override
+//            public void onError(OCRError ocrError) {
+//
+//            }
+//        },getApplicationContext());
+    }
 
 }
