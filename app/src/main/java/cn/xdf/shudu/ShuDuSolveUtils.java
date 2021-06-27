@@ -18,6 +18,10 @@ public class ShuDuSolveUtils {
     private static List<int[]> spaces = new ArrayList<int[]>();
 
     public static void solveSudoku(char[][] board) {
+        if(board.length!= line.length || board[0].length!=column.length){
+            return;
+        }
+
         for (int i = 0; i < 9; ++i) {
             for (int j = 0; j < 9; ++j) {
                 if (board[i][j] == '.') {

@@ -26,6 +26,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mAdapter = new ShuDuAdapter();
         rlvRoot.setLayoutManager(glm);
         rlvRoot.setAdapter(mAdapter);
+
+        RecyclerView rlvSelectNum = findViewById(R.id.rlv_select_num);
+        GridLayoutManager glmSelect = new GridLayoutManager(this,9);
+        rlvSelectNum.setLayoutManager(glmSelect);
+
+
+
         mBtnDiscern = findViewById(R.id.btn_discern);
         mBtnSetData = findViewById(R.id.btn_set_data);
         mBtnDiscern.setOnClickListener(this);

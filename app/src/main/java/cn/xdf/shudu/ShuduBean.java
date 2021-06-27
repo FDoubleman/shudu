@@ -11,5 +11,9 @@ public class ShuduBean {
     // 行
     int row;
 
+    // 是否被选中
+    boolean isSelect =false;
+    // 是否被关联 选中的行 列
+    boolean isAttach = false;
     int value = 0;
 }

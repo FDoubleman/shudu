@@ -2,16 +2,47 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tool="http://schemas.android.com/tools"
     android:layout_gravity="center"
-    android:layout_margin="1dp">
+    android:background="#33333333"
+    android:paddingEnd="1dp"
+    android:paddingBottom="1dp"
+  >
 
-    <EditText
-        android:id="@+id/et_edit"
+    <TextView
+        tool:text="2"
+        android:textSize="32dp"
+        android:layout_gravity="center"
+        android:id="@+id/tv_value"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:background="@color/white"
-        android:gravity="center"
-        android:inputType="number"
-        android:maxLength="1"
-        android:maxLines="1" />
+        android:gravity="center" />
+    <View
+        android:visibility="gone"
+        android:id="@+id/view_left_line"
+        android:background="@color/black"
+        android:layout_width="2dp"
+        android:layout_height="match_parent"/>
+    <View
+        android:visibility="gone"
+        android:layout_gravity="end"
+        android:id="@+id/view_right_line"
+        android:background="@color/black"
+        android:layout_width="2dp"
+        android:layout_height="match_parent"/>
+    <View
+        android:layout_gravity="top"
+        android:visibility="gone"
+        android:id="@+id/view_top_line"
+        android:background="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"/>
+    <View
+        android:layout_gravity="bottom"
+        android:visibility="gone"
+        android:id="@+id/view_bottom_line"
+        android:background="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"/>
 </FrameLayout>

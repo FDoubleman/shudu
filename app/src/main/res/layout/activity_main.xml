@@ -8,19 +8,26 @@
     tools:context=".MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:background="@color/teal_200"
+        android:layout_margin="5dp"
         android:id="@+id/rlv_root"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-    <Button
-        android:id="@+id/btn_discern"
-        android:text="识别"
-        android:textSize="16sp"
-        android:layout_width="wrap_content"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rlv_select_num"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <Button
-        android:text="设置"
+        android:text="输入数据"
         android:id="@+id/btn_set_data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btn_discern"
+        android:text="解题"
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
 </LinearLayout>

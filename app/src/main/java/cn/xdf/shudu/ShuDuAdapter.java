@@ -3,10 +3,12 @@ package cn.xdf.shudu;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,30 +36,56 @@ public class ShuDuAdapter extends RecyclerView.Adapter<ShuDuAdapter.MyHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
         ShuduBean shuduBean = mShuduBeanList.get(position);
-        holder.mEtEdit.setText("" + shuduBean.value);
-        holder.mEtEdit.setSelection(("" + shuduBean.value).length());
-        holder.mEtEdit.addTextChangedListener(new TextWatcher() {
+        setTopLine(holder.topView, shuduBean);
+        setBottomLine(holder.bottomView, shuduBean);
+        setRightLine(holder.rightView, shuduBean);
+        setLeftLine(holder.liftView, shuduBean);
+        holder.mTvValue.setText("" + shuduBean.value);
+        holder.mTvValue.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                String num = s.toString();
-                if (TextUtils.isEmpty(num)) {
-                    shuduBean.value = 0;
-                } else {
-                    shuduBean.value = Integer.parseInt(num);
-                }
+            public void onClick(View view) {
+                onItemSelect(shuduBean);
             }
         });
     }
+
+
+    private void onItemSelect(ShuduBean shuduBean){
+
+        // 1、选中当前
+
+        // 2、关联选中
+
+        // 3、显示可能出现的值
+
+    }
+
+    private void setTopLine(View lineView, ShuduBean shuduBean) {
+        // 第 1 行粗线
+        lineView.setVisibility(shuduBean.row == 0 ? View.VISIBLE : View.GONE);
+    }
+
+    private void setBottomLine(View lineView, ShuduBean shuduBean) {
+        // 第3 6 9 行粗线
+        if((shuduBean.row + 1) % 3 == 0){
+            lineView.setVisibility( View.VISIBLE);
+            Log.d("显示：",shuduBean.row + " "+shuduBean.column+" 值："+shuduBean.value);
+        }else{
+            lineView.setVisibility(View.GONE);
+            Log.d("隐藏：",shuduBean.row + " "+shuduBean.column+" 值："+shuduBean.value);
+        }
+    }
+
+
+    private void setLeftLine(View lineView, ShuduBean shuduBean) {
+        lineView.setVisibility(shuduBean.column == 0 ? View.VISIBLE : View.GONE);
+    }
+
+    private void setRightLine(View lineView, ShuduBean shuduBean) {
+        // 第3 6 9 行粗线
+        lineView.setVisibility((shuduBean.column + 1) % 3 == 0 ? View.VISIBLE : View.GONE);
+    }
+
 
     @Override
     public int getItemCount() {
@@ -84,11 +112,16 @@ public class ShuDuAdapter extends RecyclerView.Adapter<ShuDuAdapter.MyHolder> {
     }
 
     static class MyHolder extends RecyclerView.ViewHolder {
-        private EditText mEtEdit;
+        private TextView mTvValue;
+        private View liftView, rightView, topView, bottomView;
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
-            mEtEdit = itemView.findViewById(R.id.et_edit);
+            mTvValue = itemView.findViewById(R.id.tv_value);
+            liftView = itemView.findViewById(R.id.view_left_line);
+            rightView = itemView.findViewById(R.id.view_right_line);
+            topView = itemView.findViewById(R.id.view_top_line);
+            bottomView = itemView.findViewById(R.id.view_bottom_line);
         }
     }
 }
